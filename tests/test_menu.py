@@ -42,11 +42,11 @@ def test_visit_menu_links(page: Page):
     print("And the user clicks on the 'Insights' menu link")
     page.get_by_role("button", name="Insights", exact=True).click()
     print("And clicks on the 'Insights' link")
-    page.get_by_role("link", name="Insights").second.click()
+    page.get_by_role("link", name="Insights").click()
     #Assertion
     print("Then the user should be redirected to the 'Insights' page")
     expect(page).to_have_url("https://es.nttdata.com/all-insights")
-    
+
 
 
     print("And the user clicks on the 'About us' menu link")
