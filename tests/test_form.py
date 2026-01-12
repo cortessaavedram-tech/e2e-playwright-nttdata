@@ -21,7 +21,22 @@ def test_contact_form(page: Page):
     print("When te user fills the 'Telephone' field with invalid data")
     page.get_by_role("textbox", name="Teléfono*").fill("invalid_phone")
     print("Then eror message should appear indicating invalid phone number")
-    expect(page.get_by_text("Formato de número de teléfono incorrecto. Por favor, sigue el formato de ejemplo: +34 12 345 6789")).to_be_visible()
+    expect(page.get_by_text("Formato de número de teléfono incorrecto. Por favor, " \
+    "sigue el formato de ejemplo: +34 12 345 6789")).to_be_visible()
+
+    #Scenario: Not accept the privacy policy
+    print("Given the user is on the Contact page")
+    page.goto("https://es.nttdata.com/contact-us")
+    print("When the user does not accept the Conditions checkbox")
+    page.get_by_role("checkbox", name="Declaro haber leído y entendido estas condiciones " \
+    "y acepto la gestión de mis datos personales bajo nuestra Política de privacidad y cookies para ser contactado " \
+    "desde NTT DATA Spain y las compañías del grupo NTT DATA, Inc.*").uncheck()
+    print("And clicks on 'Enviar' button")
+    page.get_by_role("button", name="Enviar").click()
+    print("Then an error message should appear")
+    expect(page.get_by_text("Por favor, lee y acepta la política de privacidad.")).to_be_visible()
+    
+
 
 
 
