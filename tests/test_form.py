@@ -34,10 +34,17 @@ def test_contact_form(page: Page):
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     print("Then an error message should appear")
-    expect(page.get_by_text("Por favor, lee y acepta la política de privacidad.")).to_be_visible()
+    expect(page.get_by_text("Por favor, lee y acepta la política de privacidad.", exact=True)).to_be_visible()
     
-
-
+    #Scenario: Fill the email field with invalid data
+    print("Given the user is on the Contact page")
+    page.goto("https://es.nttdata.com/contact-us")
+    print("When the user fills the email field with invalid format")
+    page.get_by_role("textbox", name="Correo electrónico*").clear()
+    page.get_by_role("textbox", name="Correo electrónico*").fill("invalid_email")
+    print("Then 'El formato no coincide' message should appear.")
+    expect(page.get_by_text("El formato no coincide")).to_be_visible()
+    
 
 
     
