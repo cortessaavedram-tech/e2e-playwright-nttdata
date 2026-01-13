@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 import re
 
 def test_contact_form(page: Page):
-    #Scenario: Fill the contact form with an empty mandatory field
+    #Scenario: Send the contact form with an empty mandatory field
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
     print("When the user leaves the 'Name' field empty")
@@ -44,7 +44,7 @@ def test_contact_form(page: Page):
     page.get_by_role("textbox", name="Correo electrónico*").fill("invalid_email")
     print("Then 'El formato no coincide' message should appear.")
     expect(page.get_by_text("El formato no coincide")).to_be_visible()
-    
+
 
 
     
