@@ -7,9 +7,9 @@ def test_contact_form(page: Page):
     page.goto("https://es.nttdata.com/contact-us")
     print("When the user leaves the 'Name' field empty")
     #Clear the placeholder text
-    page.get_by_role("textbox", name="Nombre*").clear()
+    page.get_by_label("Nombre*").clear()
     #Leave the field empty
-    page.get_by_role("textbox", name="Nombre*").fill("")
+    page.get_by_label("Nombre*").fill("")
     print("Then error message should appear")
     expect(page.get_by_text("Campo requerido")).to_be_visible()
 
@@ -17,10 +17,10 @@ def test_contact_form(page: Page):
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
     #Clear the placeholder text
-    page.get_by_role("textbox", name="Teléfono*").clear()
+    page.get_by_label("Teléfono*").clear()
     print("When te user fills the 'Telephone' field with invalid data")
-    page.get_by_role("textbox", name="Teléfono*").fill("invalid_phone")
-    print("Then eror message should appear indicating invalid phone number")
+    page.get_by_label("Teléfono*").fill("invalid_phone")
+    print("Then error message should appear indicating invalid phone number")
     expect(page.get_by_text("Formato de número de teléfono incorrecto. Por favor, " \
     "sigue el formato de ejemplo: +34 12 345 6789")).to_be_visible()
 
@@ -40,8 +40,8 @@ def test_contact_form(page: Page):
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
     print("When the user fills the email field with invalid format")
-    page.get_by_role("textbox", name="Correo electrónico*").clear()
-    page.get_by_role("textbox", name="Correo electrónico*").fill("invalid_email")
+    page.get_by_label("Correo electrónico*").clear()
+    page.get_by_label("Correo electrónico*").fill("invalid_email")
     print("Then 'El formato no coincide' message should appear.")
     expect(page.get_by_text("El formato no coincide")).to_be_visible()
 
