@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 import re
 
 def test_images(page: Page):
+    #Images of home page are visible
     print("Given the user is on the Home page")
     page.goto("https://es.nttdata.com/")
     print("When the user visit the page")
