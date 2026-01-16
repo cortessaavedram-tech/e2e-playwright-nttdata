@@ -17,3 +17,5 @@ def test_languages(page: Page):
     expect(page).to_have_url(re.compile("https://uk.nttdata.com/"))
     #Assertion by an English heading
     expect(page.get_by_role("heading", name="Cyber Frontiers 2026")).to_be_visible()
+
+    
