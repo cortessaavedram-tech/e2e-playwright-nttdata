@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 import re
 
 def test_searchbox(page: Page):
-    #Scenario:Search for 'cloud' in the search box
+    #Scenario:Happy path searching for 'cloud' on NTT DATA Spain page
     print("Given the user is on the NTT DATA Spain page")
     page.goto("https://es.nttdata.com/")
     page.pause()
