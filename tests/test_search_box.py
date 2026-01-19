@@ -5,7 +5,7 @@ def test_searchbox(page: Page):
     #Scenario:Happy path searching for 'cloud' on NTT DATA Spain page
     print("Given the user is on the NTT DATA Spain page")
     page.goto("https://es.nttdata.com/")
-    page.pause()
+    
     #Accept cookies if the button is visible
     btn_cookies = page.get_by_role("button", name=re.compile(r"Aceptar", re.I))
     if btn_cookies.is_visible():
