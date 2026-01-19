@@ -1,13 +1,19 @@
 from playwright.sync_api import Page, expect
 import re
+import utils
 
 
 def test_visit_menu_links(page: Page):
     print("Given the user is on the homepage")
     page.goto("https://es.nttdata.com/")
-
+    
+   
     #Industries
     print("When the user clicks on the 'Industries' menu link")
+    #If mobile, open the menu first
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
+    
     #Localize the element by role (cutton, link, heading...) and by text
     page.get_by_role("button", name="Industries", exact=True).click()
     print("And clicks on the 'Industries' link")
@@ -22,6 +28,8 @@ def test_visit_menu_links(page: Page):
 
     #Services
     print("When the user clicks on the 'Services' menu link")
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
     page.get_by_role("button", name="Services", exact=True).click()
     print("And clicks on the 'Services' link")
     page.get_by_role("link", name="Services").first.click()
@@ -32,6 +40,8 @@ def test_visit_menu_links(page: Page):
 
     #Products
     print("When the user clicks on the 'Products' menu link")
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
     page.locator("#navbarLevel0Collapse").get_by_role("link", name="Products").first.click()
     #Assertion
     print("Then the user should be redirected to the 'Products' page")
@@ -40,6 +50,8 @@ def test_visit_menu_links(page: Page):
 
     #Insights
     print("When the user clicks on the 'Insights' menu link")
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
     page.get_by_role("button", name="Insights", exact=True).click()
     print("And clicks on the 'Insights' link")
     page.locator("#collapseLeft3").get_by_role("link", name="Insights").click() 
@@ -50,6 +62,8 @@ def test_visit_menu_links(page: Page):
 
     #About us
     print("When the user clicks on the 'About us' menu link")
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
     page.get_by_role("button", name="About us", exact=True).click()
     print("And clicks on the 'About us' link")
     page.get_by_role("link", name="About us", exact=True).click()
