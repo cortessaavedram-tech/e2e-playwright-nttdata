@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 import re
 
-def test_contact_form(page: Page):
+def test_form_empty_field(page: Page):
     #Scenario: Send the contact form with an empty mandatory field
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
@@ -13,6 +13,7 @@ def test_contact_form(page: Page):
     print("Then error message should appear")
     expect(page.get_by_text("Campo requerido")).to_be_visible()
 
+def test_form_invalid_data(page: Page):
     #Scenario: Fill the Telephone field with invalid data
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
@@ -24,6 +25,7 @@ def test_contact_form(page: Page):
     expect(page.get_by_text("Formato de número de teléfono incorrecto. Por favor, " \
     "sigue el formato de ejemplo: +34 12 345 6789")).to_be_visible()
 
+def test_form_privacy_policy(page: Page):
     #Scenario: Not accept the privacy policy
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
@@ -36,6 +38,7 @@ def test_contact_form(page: Page):
     print("Then an error message should appear")
     expect(page.get_by_text("Por favor, lee y acepta la política de privacidad.", exact=True)).to_be_visible()
     
+def test_form_invalid_email(page: Page):
     #Scenario: Fill the email field with invalid data
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/contact-us")
