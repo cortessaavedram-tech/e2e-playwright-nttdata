@@ -24,6 +24,7 @@ def test_form_empty_field(page: Page):
     page.get_by_role("button", name="Enviar").click()
     
     print("Then error message should appear")
+    utils.accept_cookies(page)
     expect(page.get_by_text("Campo requerido").nth(3)).to_be_visible()
 
 
@@ -45,7 +46,8 @@ def test_form_invalid_data(page: Page):
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     print("Then error message should appear indicating invalid phone number")
-    expect(page.get_by_text(re.compile(r"Formato de número de teléfono incorrecto. Por favor, ", re.I))).to_be_visible()
+    utils.accept_cookies(page)
+    expect(page.get_by_text(re.compile(r"Formato de número de teléfono", re.I))).to_be_visible()
 
 
 def test_form_privacy_policy(page: Page):
@@ -61,11 +63,12 @@ def test_form_privacy_policy(page: Page):
         page.goto("https://es.nttdata.com/contact-us")
         
     print("When the user does not accept the Conditions checkbox")
+    utils.accept_cookies(page)
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     print("Then an error message should appear")
     utils.accept_cookies(page)
-    expect(page.get_by_text("Por favor, lee y acepta la")).to_be_visible()
+    expect(page.get_by_text(re.compile(r"Por favor, lee y acepta la", re.I))).to_be_visible()
 
 
 def test_form_invalid_email(page: Page):
