@@ -64,6 +64,7 @@ def test_form_privacy_policy(page: Page):
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     print("Then an error message should appear")
+    utils.accept_cookies(page)
     expect(page.get_by_text("Por favor, lee y acepta la")).to_be_visible()
 
 
