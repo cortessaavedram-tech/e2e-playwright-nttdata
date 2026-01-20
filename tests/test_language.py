@@ -9,7 +9,6 @@ def test_languages(page: Page):
    
     #Accept cookies if the button is visible
     utils.accept_cookies(page)
-    page.pause()
 
     print("When the user changes the website language to English")
      #If mobile, open the menu first

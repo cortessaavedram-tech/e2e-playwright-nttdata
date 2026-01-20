@@ -35,6 +35,8 @@ def test_links_facebook(page: Page):
 
     facebook_page = new_page_info.value
     facebook_page.wait_for_load_state()
+    page.pause()
+    page.get_by_role("button", name="Permitir solo cookies").click()
 
     print("Then the Facebook page should open in a new tab")
     expect(facebook_page).to_have_url(re.compile(r"facebook\.com/nttdata", re.I))
