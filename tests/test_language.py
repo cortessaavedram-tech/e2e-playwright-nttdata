@@ -1,15 +1,21 @@
 from playwright.sync_api import Page, expect
 import re
+import utils
 
 def test_languages(page: Page):
     #Scenario: Change website language to English
     print("Given the user is on the NTT DATA Spain page")
     page.goto("https://es.nttdata.com/")
+   
     #Accept cookies if the button is visible
-    btn_cookies = page.get_by_role("button", name=re.compile(r"Aceptar", re.I))
-    if btn_cookies.is_visible():
-        btn_cookies.click()
+    utils.accept_cookies(page)
+    page.pause()
+
     print("When the user changes the website language to English")
+     #If mobile, open the menu first
+    if (utils.is_mobile(page)):
+        page.get_by_role("button", name="Toggle navigation").click()
+    
     page.get_by_role("button", name="Español").click()
     page.get_by_role("link", name="EnglishUnited KingdomEnglish").click()
     #Assertion by url

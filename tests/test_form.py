@@ -26,6 +26,7 @@ def test_form_empty_field(page: Page):
     print("Then error message should appear")
     expect(page.get_by_text("Campo requerido").nth(3)).to_be_visible()
 
+
 def test_form_invalid_data(page: Page):
     #Scenario: Fill the Telephone field with invalid data
     print("Given the user is on the Contact page")
@@ -45,6 +46,7 @@ def test_form_invalid_data(page: Page):
     page.get_by_role("button", name="Enviar").click()
     print("Then error message should appear indicating invalid phone number")
     expect(page.get_by_text(re.compile(r"Formato de número de teléfono incorrecto. Por favor, ", re.I))).to_be_visible()
+
 
 def test_form_privacy_policy(page: Page):
     #Scenario: Not accept the privacy policy
