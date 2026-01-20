@@ -1,3 +1,4 @@
+from tabnanny import check
 from playwright.sync_api import Page, expect
 import re
 import utils
@@ -53,19 +54,17 @@ def test_form_privacy_policy(page: Page):
     if (utils.is_mobile(page)):
         page.get_by_role("link", name="envelope Contact").click()
         
+
     if not utils.is_mobile(page):
         page.goto("https://es.nttdata.com/contact-us")
-
+        
     print("When the user does not accept the Conditions checkbox")
-    page.get_by_role("checkbox", name="Declaro haber leído y entendido estas condiciones " \
-    "y acepto la gestión de mis datos personales bajo nuestra Política de privacidad y cookies para ser contactado " \
-    "desde NTT DATA Spain y las compañías del grupo NTT DATA, Inc.*").uncheck()
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     print("Then an error message should appear")
     expect(page.get_by_text("Por favor, lee y acepta la")).to_be_visible()
-    
-    
+
+
 def test_form_invalid_email(page: Page):
     #Scenario: Fill the email field with invalid data
     print("Given the user is on the Contact page")
