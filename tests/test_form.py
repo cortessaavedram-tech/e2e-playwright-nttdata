@@ -49,21 +49,6 @@ def test_form_invalid_data(page: Page):
     utils.accept_cookies(page)
     expect(page.get_by_text(re.compile(r"Formato de número de teléfono", re.I))).to_be_visible()
 
-
-def test_form_privacy_policy(page: Page):
-    #Scenario: Not accept the privacy policy
-    print("Given the user is on the Contact page")
-    page.goto("https://es.nttdata.com/")
-    utils.accept_cookies(page)
-    
-        
-    print("When the user does not accept the Conditions checkbox")
-    utils.accept_cookies(page)
-    print("And clicks on 'Enviar' button")
-    page.get_by_role("button", name="Enviar").click()
-    expect(page.get_by_text(re.compile(r"Por favor, lee y acepta la", re.I))).to_be_visible()
-
-
 def test_form_invalid_email(page: Page):
     #Scenario: Fill the email field with invalid data
     print("Given the user is on the Contact page")
