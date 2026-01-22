@@ -55,18 +55,10 @@ def test_form_privacy_policy(page: Page):
     print("Given the user is on the Contact page")
     page.goto("https://es.nttdata.com/")
     utils.accept_cookies(page)
-    if (utils.is_mobile(page)):
-        page.get_by_role("link", name="envelope Contact").click()
-    if not utils.is_mobile(page):
-        page.goto("https://es.nttdata.com/contact-us")
+    
         
     print("When the user does not accept the Conditions checkbox")
     utils.accept_cookies(page)
-    print("And clicks on 'Enviar' button")
-    page.get_by_role("button", name="Enviar").click()
-    print("Then an error message should appear")
-    utils.accept_cookies(page)
-    page.locator("iframe[title=\"Banner de cookies\"]").content_frame.get_by_role("button", name="Aceptar").click()
     print("And clicks on 'Enviar' button")
     page.get_by_role("button", name="Enviar").click()
     expect(page.get_by_text(re.compile(r"Por favor, lee y acepta la", re.I))).to_be_visible()
