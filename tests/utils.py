@@ -15,7 +15,7 @@ def accept_cookies(page):
           btn_cookies = page.locator("iframe[title=\"Banner de cookies\"]").content_frame.get_by_role("button", name=re.compile(r"Aceptar", re.I))
           if btn_cookies.is_visible():
                btn_cookies.click()
-     if not is_mobile(page):
+     else:
           btn_cookies = page.get_by_role("button", name=re.compile(r"Aceptar", re.I))
           if btn_cookies.is_visible():
                btn_cookies.click()
