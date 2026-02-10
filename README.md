@@ -1,4 +1,4 @@
-# Playwright E2E NTT Data
+# Playwright E2E Automation - NTT Data
 
 This project performs E2E tests on the [NTT Data](https://es.nttdata.com/) website, generating a report of results and video recordings. Tests are executed on **Chrome** (desktop) and emulated mobile device.
 
