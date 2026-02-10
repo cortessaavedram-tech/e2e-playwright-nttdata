@@ -2,8 +2,8 @@ name: Playwright Tests
 
 on:
   push:
-  schedule:
-    - cron: '0 0 * * 0'  # Este cron ejecuta el workflow todos los domingos a medianoche UTC
+    branches:
+      - main
   workflow_dispatch:  # Permite ejecutar el flujo de trabajo manualmente desde la interfaz de GitHub
 
 
